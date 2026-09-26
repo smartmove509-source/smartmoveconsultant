@@ -519,3 +519,337 @@ window.addEventListener("resize", function () {
         `translateX(-${currentOfferSlide * slideWidth}px)`;
 
 });
+/* =========================================
+DIGITAL & CREATIVE SERVICES POPUPS
+========================================= */
+
+/* =========================================
+   CREATIVE SERVICE POPUPS
+========================================= */
+
+function openCreativePopup(popupId) {
+
+    const popup = document.getElementById(popupId);
+
+    if (popup) {
+
+        popup.style.display = "flex";
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+}
+
+
+function closeCreativePopup(popupId) {
+
+    const popup = document.getElementById(popupId);
+
+    if (popup) {
+
+        popup.style.display = "none";
+
+        document.body.style.overflow = "";
+
+    }
+
+}
+
+
+/* =========================================
+   CREATIVE ENQUIRY DROPDOWN
+========================================= */
+
+function openCreativeEnquiry(serviceType) {
+
+    const popup = document.getElementById("creativeEnquiryPopup");
+
+    const serviceDropdown =
+        document.getElementById("creativeService");
+
+
+    if (!popup || !serviceDropdown) {
+        return;
+    }
+
+
+    /* Clear old options */
+
+    serviceDropdown.innerHTML = "";
+
+
+    /* Default option */
+
+    const defaultOption =
+        document.createElement("option");
+
+    defaultOption.value = "";
+
+    defaultOption.textContent =
+        "Select Service";
+
+    defaultOption.disabled = true;
+
+    defaultOption.selected = true;
+
+    serviceDropdown.appendChild(defaultOption);
+
+
+    /* =====================================
+       WEBSITE SERVICES
+    ===================================== */
+
+    if (serviceType === "website") {
+
+        const websiteServices = [
+
+            "Business Website Design",
+
+            "Responsive Website Design",
+
+            "Landing Page Design",
+
+            "Portfolio Website",
+
+            "E-Commerce Website",
+
+            "Website Development",
+
+            "Mobile-Friendly Website",
+
+            "Website Maintenance"
+
+        ];
+
+
+        websiteServices.forEach(function(service) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = service;
+
+            option.textContent = service;
+
+            serviceDropdown.appendChild(option);
+
+        });
+
+    }
+
+
+    /* =====================================
+       GRAPHIC DESIGN SERVICES
+    ===================================== */
+
+    else if (serviceType === "graphic") {
+
+        const graphicServices = [
+
+            "Logo Design",
+
+            "Social Media Post Design",
+
+            "Business Banner Design",
+
+            "Advertisement Design",
+
+            "Visiting Card Design",
+
+            "Brochure Design",
+
+            "Poster Design",
+
+            "Flyer Design",
+
+            "Business Promotion Graphics"
+
+        ];
+
+
+        graphicServices.forEach(function(service) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = service;
+
+            option.textContent = service;
+
+            serviceDropdown.appendChild(option);
+
+        });
+
+    }
+
+
+    /* =====================================
+       VIDEO EDITING SERVICES
+    ===================================== */
+
+    else if (serviceType === "video") {
+
+        const videoServices = [
+
+            "Promotional Video Editing",
+
+            "Instagram Reel Editing",
+
+            "YouTube Video Editing",
+
+            "Business Advertisement Videos",
+
+            "Product Video Editing",
+
+            "Social Media Video Editing",
+
+            "Short Video Editing",
+
+            "Business Promotion Videos"
+
+        ];
+
+
+        videoServices.forEach(function(service) {
+
+            const option =
+                document.createElement("option");
+
+            option.value = service;
+
+            option.textContent = service;
+
+            serviceDropdown.appendChild(option);
+
+        });
+
+    }
+
+
+    /* =====================================
+       OPEN ENQUIRY POPUP
+    ===================================== */
+
+    popup.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+
+/* =========================================
+   CLOSE POPUP WHEN CLICKING OUTSIDE
+========================================= */
+
+document.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("creative-popup")) {
+
+        event.target.style.display = "none";
+
+        document.body.style.overflow = "";
+
+    }
+
+});
+
+
+
+/* =========================================
+   CREATIVE ENQUIRY SUBMIT
+========================================= */
+
+function submitCreativeEnquiry(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("creativeName").value.trim();
+
+
+    const phone =
+        document.getElementById("creativePhone").value.trim();
+
+
+    const email =
+        document.getElementById("creativeEmail").value.trim();
+
+
+    const service =
+        document.getElementById("creativeService").value;
+
+
+    const message =
+        document.getElementById("creativeMessage").value.trim();
+
+
+    if (!service) {
+
+        alert("Please select a service.");
+
+        return;
+
+    }
+
+
+    const whatsappText =
+        "Hello Smart Move Consultant,\n\n" +
+
+        "New Service Enquiry\n\n" +
+
+        "Name: " + name + "\n" +
+
+        "Phone: " + phone + "\n" +
+
+        "Email: " + (email || "Not provided") + "\n" +
+
+        "Service: " + service + "\n" +
+
+        "Requirement: " + message;
+
+
+    const whatsappURL =
+        "https://wa.me/919217589490?text=" +
+        encodeURIComponent(whatsappText);
+
+
+    window.open(whatsappURL, "_blank");
+
+}
+// REVIEW TO WHATSAPP
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("reviewName").value.trim();
+    const rating = document.getElementById("reviewRating").value;
+    const review = document.getElementById("reviewMessage").value.trim();
+
+    if (!name || !rating || !review) {
+        alert("Please fill all review details.");
+        return;
+    }
+
+    const stars = "★".repeat(Number(rating)) + "☆".repeat(5 - Number(rating));
+
+    const message =
+        "🌟 New Customer Review\n\n" +
+        "👤 Name: " + name + "\n" +
+        "⭐ Rating: " + stars + " (" + rating + "/5)\n\n" +
+        "💬 Review:\n" + review;
+
+    const whatsappNumber = "919217589490";
+
+    const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        encodeURIComponent(message);
+
+    window.open(whatsappURL, "_blank");
+
+    document.getElementById("reviewSuccess").style.display = "block";
+    document.getElementById("reviewForm").reset();
+});
